@@ -41,8 +41,8 @@ public class Home extends JFrame implements ActionListener{
         icon.setBounds(5,0,70,70);
         p1.add(icon);
         
-        JLabel heading = new JLabel("DashBoard");
-        heading.setBounds(80,10,300,40);
+        JLabel heading = new JLabel("THANK YOU FOR VISITING");
+        heading.setBounds(80,10,500,40);
         heading.setForeground(Color.WHITE);
         heading.setFont(new Font("Tahoma",Font.BOLD,30));
         p1.add(heading);
@@ -53,9 +53,9 @@ public class Home extends JFrame implements ActionListener{
         p2.setBounds(0,65,300,900);
         add(p2);
         
-        addup = new JButton("FILL DETAILS");
-        addup.setBounds(0,0,300,50);
-        addup.setBackground(new Color(0,0,102));
+        addup = new JButton("FILL DETAILS HERE");
+        addup.setBounds(0,0,300,60);
+        addup.setBackground(Color.RED);
         addup.setForeground(Color.WHITE);
         addup.setFont(new Font("Tahoma",Font.BOLD,20));
         addup.addActionListener(this);
@@ -157,7 +157,7 @@ public class Home extends JFrame implements ActionListener{
         add(icon1);
         
         JLabel text = new JLabel("Tours And Travel Management System");
-        text.setBounds(400,70,1200,70);
+        text.setBounds(950,750,1200,70);
         text.setForeground(Color.WHITE);
         text.setFont(new Font("TimesRoman",Font.BOLD,30));
         icon1.add(text);
