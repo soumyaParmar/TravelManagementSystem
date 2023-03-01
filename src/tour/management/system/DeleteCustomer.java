@@ -11,9 +11,6 @@ package tour.management.system;
 import java.awt.BorderLayout;
 import java.awt.*;
 import java.awt.EventQueue;
-
-import javax.swing.border.EmptyBorder;
-
 import java.awt.Font;
 import java.awt.Image;
 import java.sql.*;	
@@ -24,7 +21,7 @@ import java.awt.event.ActionEvent;
 
 public class DeleteCustomer extends JFrame implements ActionListener {
 	private JPanel contentPane;
-        Choice c1;
+        JLabel c1;
         static String username;
         JLabel lblName,lb3,lblId,l2,lb2,l3,lblName_1,l4,lblGender,l5,lblCountry,l6,lblReserveRoomNumber,l7,lblCheckInStatus,l8,lblDeposite,l9 ;
         JButton b1,btnNewButton,btnExit;
@@ -57,20 +54,9 @@ public class DeleteCustomer extends JFrame implements ActionListener {
 		lb3.setBounds(35, 70, 200, 14);
 		contentPane.add(lb3);
                 
-                c1 = new Choice();
-                Conn c = new Conn();
-                try{
-
-                    ResultSet rs = c.s.executeQuery("select * from customer");
-                    while(rs.next()){
-                        c1.add(rs.getString("username"));
-                    }
-
-                    rs.close();
-                }catch(SQLException e){}
-
+                c1 = new JLabel();
                 c1.setBounds(271, 70, 150, 30);
-                add(c1);
+                contentPane.add(c1);
                 
                  lblId = new JLabel("ID :");
 		lblId.setBounds(35, 110, 200, 14);
@@ -139,10 +125,10 @@ public class DeleteCustomer extends JFrame implements ActionListener {
 		contentPane.add(l9);
 
 		
-		 b1 = new JButton("Check");
+		 b1 = new JButton("Click Here");
 		b1.addActionListener(this); 
 		
-		b1.setBounds(425, 70, 80, 22);
+		b1.setBounds(400, 70, 100, 22);
                 b1.setBackground(Color.BLACK);
                 b1.setForeground(Color.WHITE);
 		contentPane.add(b1);
@@ -173,9 +159,10 @@ public class DeleteCustomer extends JFrame implements ActionListener {
                  Conn c = new Conn();
                            
                             try{
-                                String s1 = c1.getSelectedItem(); 
+                                 
                                 ResultSet rs = c.s.executeQuery("select * from customer where username = '"+username+"'");
                                 if(rs.next()){
+                                    c1.setText(rs.getString(1));
                                     l2.setText(rs.getString(2));  
                                     l3.setText(rs.getString(3));
                                     l4.setText(rs.getString(4));  
@@ -192,13 +179,13 @@ public class DeleteCustomer extends JFrame implements ActionListener {
             }
             else if(e.getSource()==btnNewButton){
                 Conn c = new Conn();
-                           
-                          
                             try{
-	    			String s1 = c1.getSelectedItem(); 
+	    			//String s1 = c1.getSelectedItem(); 
                                 
-                                String q1 = "update from customer where username = '"+lb3.getText()+"'";
+                                String q1 = "delete from customer where username = '"+username+"'";
+                                String q2 = "delete from account where username ='"+username+"'";
                                 c.s.executeUpdate(q1);
+                                c.s.executeUpdate(q2);
                                 
 	    			JOptionPane.showMessageDialog(null, "Customer Detail Deleted Successfully");
                                 setVisible(false);
